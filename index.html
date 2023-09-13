@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HygIoT</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <form  onsubmit="sendEmail(); reset(); return false;">
+                <h2>Register your complaint</h2><br>
+                <input type="text" id="name" name="name" placeholder="Enter your name"><br><br>
+                <input type="email" id="email" name="email" placeholder="Enter your Email"><br><br>
+                <textarea id="complaint" name="complaint" placeholder="Write your complaint" rows="10" cols="50" ></textarea><br><br>
+                <button type="submit" id="submit">Send</button>
+            </form>
+            <br>
+        </div>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script >
+            function sendEmail(){
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "complaintshygiot@gmail.com",
+                Password : "A897EDAB236534C5B1331449820F1C1053D2",
+                To : 'complaintshygiot@gmail.com',
+                From : "complaintshygiot@gmail.com",
+                Subject : "Complaint regarding smart toilet",
+                Body : "Name: "+document.getElementById("name").value +
+                "<br> Email: "+document.getElementById("email").value+
+                "<br> Complaint: "+document.getElementById("complaint").value
+            }).then(
+            message => alert("Complaint resgistered Successfully")
+            );
+}
+        </script>
+    </body>
+</html>
